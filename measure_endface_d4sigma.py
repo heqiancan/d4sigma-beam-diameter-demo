@@ -102,11 +102,8 @@ def main():
 
     use_bundled = not args.images and args.image_dir is None
     if use_bundled:
-        script_dir = Path(__file__).resolve().parent
-        img_dir = script_dir / "synthetic_demo_images"
-        image_paths = sorted(p for p in img_dir.glob("*") if p.suffix.lower() in IMAGE_EXTS)
-        if not image_paths:
-            image_paths = sorted(script_dir.glob("synthetic_0[123].png"))
+        img_dir = Path(__file__).resolve().parent / "synthetic_demo_images"
+        image_paths = sorted(p for p in img_dir.iterdir() if p.suffix.lower() in IMAGE_EXTS)
         scale = 0.057 if args.scale_um_per_pixel is None else args.scale_um_per_pixel
         half_width = 0.001 if args.scale_half_width is None else args.scale_half_width
     elif args.image_dir is not None:

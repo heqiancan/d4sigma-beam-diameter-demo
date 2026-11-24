@@ -16,7 +16,7 @@ Signed background-subtracted residuals are retained for all D4σ integrals.
 The package includes synthetic demonstration images; 
 raw experimental laser images are withheld due to institutional restrictions.
 The experimental value of 94.88 µm is reproduced separately from the measured
-radial profiles and the inscribed circular aperture with the Hofer correction. 
+radial profiles and the inscribed circular aperture with the Hofer correction.
 The synthetic examples illustrate the effects of truncation and of the Gaussian aperture correction.
 
 Requirements
@@ -27,15 +27,11 @@ Run the bundled example images
   python3 measure_endface_d4sigma.py
   python3 measure_endface_d4sigma.py --csv synthetic_results.csv
 
-If you downloaded the supplementary files individually, save synthetic_01.png,
-synthetic_02.png, and synthetic_03.png in the same folder as the script, keeping
-their original names. The script also works with the original archive layout,
-where the images are in the synthetic_demo_images/ subfolder next to the script.
-Both layouts use the example pixel scale of 0.057 ± 0.001 µm/px.
+The script reads all three PNG files in synthetic_demo_images/ next to the
+script and uses their example pixel scale of 0.057 ± 0.001 µm/px.
 The files are 2560x2560 16-bit grayscale surrogate frames
 with a flat-top + halo radial profile (order-6 core with wc = 46.1 µm and
 order-3 halo of 25% peak amplitude with wh = 63.1 µm, scaled uniformly by ±0.5 µm in wc across the three frames). 
-The calculation script reads the PNGs directly and needs only those files.
 
 Expected synthetic example results
 - Mean 1/e² diameter: 98.132 µm (1721.61 px)
@@ -48,14 +44,6 @@ Expected synthetic example results
 
 Run on another image directory
   python3 measure_endface_d4sigma.py --image-dir "/path/to/images" --scale-um-per-pixel <scale> --csv results.csv
-
-The directory is read in filename order. Supported formats are BMP, PNG,
-and TIFF. You can also list individual image files instead of --image-dir.
-
-Supply unsaturated, approximately circular 8-bit or 16-bit grayscale images.
-`--scale-um-per-pixel` sets the calibrated object-plane scale in the input file
-(accounting for any acquisition binning or resizing); `--scale-half-width` is
-optional (in µm/px, rectangular distribution half-width).
 
 Notes
 Eq. (23) is derived for a Gaussian beam and agrees within 0.3% with the
